@@ -10,8 +10,8 @@ const FeatureMovies = () => {
       method: "GET",
       headers: {
         accept: "application/json",
-        // Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZDJiMjUyODE4NGNmMjcyZjk5YjBiZGFlZGUxMjIxNSIsIm5iZiI6MTcyODk3MjU1NS41MDYyOTMsInN1YiI6IjY3MGUwMTJhZDVmOTNhM2RhMGJjMWQ4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xq12AQi2QBGT5M16-zGiFwQZvFGzdNhGcZMQfST9_TI`,
-        Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZDJiMjUyODE4NGNmMjcyZjk5YjBiZGFlZGUxMjIxNSIsIm5iZiI6MTcyODk3MjU1NS41MDYyOTMsInN1YiI6IjY3MGUwMTJhZDVmOTNhM2RhMGJjMWQ4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xq12AQi2QBGT5M16-zGiFwQZvFGzdNhGcZMQfST9_TI`,
+        // Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
       },
     });
     const data = await res.json();
