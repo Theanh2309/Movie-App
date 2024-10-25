@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 // https://preline.co/docs/progress.html
 const CircularProgressBar = ({
-  percent,
+  percent = percent,
   size = 2,
   strokeWidth = 0.25,
   strokeColor,

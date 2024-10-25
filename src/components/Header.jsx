@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
@@ -8,7 +9,9 @@ const Header = () => {
         <div className="flex items-center gap-4 lg:gap-6">
           {/* Flaticon logo */}
           {/* ko co tien to sm, md... +> style mobile */}
-          <img src="./netflix.png" className="w-16 cursor-pointer sm:w-28" />
+          <Link to="/">
+            <img src="/netflix.png" className="w-16 cursor-pointer sm:w-28" />
+          </Link>
           <a href="#" className="hover:text-red-400 lg:text-xl">
             Phim
           </a>
