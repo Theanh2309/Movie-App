@@ -1,10 +1,12 @@
 const ActorInfo = ({ actor }) => {
-  console.log({ actor });
+  // console.log({ actor });
   const defaultPathImageActor = "/440x660.svg";
   return (
     <div className="overflow-hidden rounded-lg border border-slate-300 bg-black shadow-sm">
       {/* ?placehold img */}
       <img
+        width={276}
+        height={350}
         loading="lazy"
         src={
           actor.profile_path

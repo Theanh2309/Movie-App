@@ -6,7 +6,7 @@ const Test3 = ({ itemClick }) => {
   //Re-rendering: Khi itemClick thay đổi trong Test2, Test3 sẽ re-render, nhưng useState không khởi tạo lại itemClickTest3. Nó chỉ khởi tạo một lần khi component được mount.
   //Đó là lý do tại sao bạn cần useEffect để cập nhật itemClickTest3 mỗi khi itemClick thay đổi. useEffect sẽ đảm bảo rằng itemClickTest3 luôn đồng bộ với itemClick.
 
-  console.log({ itemClickTest3 });
+  // console.log({ itemClickTest3 });
   useEffect(() => {
     setItemClickTest(itemClick);
   }, [itemClick]);

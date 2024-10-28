@@ -3,7 +3,7 @@ import React from "react";
 const Test = () => {
   return (
     <>
-      {/* <div class="flex font-sans">
+      {/* <div className="flex font-sans">
         <div class="relative w-48 flex-none">
           <img
             src="https://tailwindcss.com/_next/static/media/classic-utility-jacket.82031370.jpg"
@@ -121,15 +121,15 @@ const Test = () => {
           </p>
         </form>
       </div> */}
-      <div class="max-w-sm overflow-hidden rounded shadow-lg">
+      <div className="max-w-sm overflow-hidden rounded shadow-lg">
         <img
-          class="w-full"
+          className="w-full"
           src="https://tailwindcss.com/_next/static/media/classic-utility-jacket.82031370.jpg"
           alt="Sunset in the mountains"
         />
-        <div class="px-6 py-4">
-          <div class="mb-2 text-xl font-bold">The Coldest Sunset</div>
-          <p class="text-base text-gray-700">
+        <div className="px-6 py-4">
+          <div className="mb-2 text-xl font-bold">The Coldest Sunset</div>
+          <p className="text-base text-gray-700">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           </p>
         </div>

@@ -1,31 +1,41 @@
 import { Link } from "react-router-dom";
 import CircularProgressBar from "./CircularProgressBar";
+import { useState } from "react";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const MovieCart = ({ media, activeTabId, id }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const defaultBackdropPath = "/440x660.svg";
   const backdropPath = media?.backdrop_path
     ? media.backdrop_path
     : media.profile_path;
   // ? media.profile_path
   // : defaultBackdropPath;
-
+  console.log(media.media_type);
   return (
     <Link to={`/movie-detail/${id}`}>
       <div className="relative overflow-hidden rounded-lg border border-slate-800">
         {/* media.media_type === "tv"*/}
-        {activeTabId === "tv" && (
+        {/* {activeTabId === "tv" && (
           <p className="absolute right-1 top-1 rounded bg-black p-1 text-sm text-white">
+            TV Show
+          </p>
+        )} */}
+        {media.media_type === "tv" && (
+          <p className="absolute right-1 top-1 z-10 rounded bg-black p-1 text-sm text-white">
             TV Show
           </p>
         )}
         {media.media_type === "person" && (
-          <p className="absolute right-1 top-1 rounded bg-black p-1 text-sm text-white">
+          <p className="absolute right-1 top-1 z-10 rounded bg-black p-1 text-sm text-white">
             Person
           </p>
         )}
 
         <img
           loading="lazy"
+          className={`w-full transition-all duration-500 ${isLoaded ? "blur-0" : "blur-lg"}`}
+          onLoad={() => setIsLoaded(true)}
           src={
             backdropPath
               ? `https://media.themoviedb.org/t/p/w220_and_h330_face${backdropPath}`
@@ -36,6 +46,9 @@ const MovieCart = ({ media, activeTabId, id }) => {
               ? `https://media.themoviedb.org/t/p/w220_and_h330_face${backdropPath} 1x, https://media.themoviedb.org/t/p/w440_and_h660_face${backdropPath} 2x`
               : defaultBackdropPath
           }
+          // CLS web
+          width={200}
+          height={300}
         ></img>
         <div
           className="relative -top-[1.5vw] px-4"

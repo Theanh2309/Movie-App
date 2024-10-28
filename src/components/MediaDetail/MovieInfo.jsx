@@ -16,7 +16,7 @@ const MovieInfo = ({ movieInfo }) => {
             <img
               key={countryCode}
               src={`https://flagcdn.com/48x36/${countryCode.toLowerCase()}.png`}
-              srcset={`https://flagcdn.com/96x72/${countryCode.toLowerCase()}.png 2x,https://flagcdn.com/144x108/${countryCode.toLowerCase()}.png 3x`}
+              srcSet={`https://flagcdn.com/96x72/${countryCode.toLowerCase()}.png 2x,https://flagcdn.com/144x108/${countryCode.toLowerCase()}.png 3x`}
               className="mr-1 mt-1 w-[1.6vw]"
 
               //  flagcdn

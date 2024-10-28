@@ -13,8 +13,6 @@ const MediaList = ({ title, tabs }) => {
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${import.meta.env.VITE_API_READ_ACCESS_TOKEN}`,
-        // Authorization:
-        //   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZDJiMjUyODE4NGNmMjcyZjk5YjBiZGFlZGUxMjIxNSIsIm5iZiI6MTcyOTA1NTEwMS4zMTU3MzgsInN1YiI6IjY3MGUwMTJhZDVmOTNhM2RhMGJjMWQ4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zcoUZCQgP4ro24BqMu2xMnSslW3TS8a5aUHv2ifS-_g",
       },
     });
     // console.log(import.meta.env.VITE_API_KEY);

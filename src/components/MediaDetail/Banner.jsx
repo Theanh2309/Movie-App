@@ -2,6 +2,7 @@ import { faL, faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircularProgressBar from "../CircularProgressBar";
 import { groupBy } from "lodash";
+import { useState } from "react";
 const Banner = ({ mediaInfo }) => {
   const crews = (mediaInfo?.credits?.crew || [])
     .filter((crew) => ["Director", "Screenplay", "Writer"].includes(crew.job))
@@ -10,6 +11,8 @@ const Banner = ({ mediaInfo }) => {
   // console.log({ crews });
   const groupedCrews = groupBy(crews, "job");
   // console.log({ groupedCrews });
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <div className="relative text-white shadow-sm shadow-slate-800">
       {/* inset-0 để bg có thể phủ hết theo div cha: overlay */}
@@ -25,6 +28,10 @@ const Banner = ({ mediaInfo }) => {
           <img
             src={`https://image.tmdb.org/t/p/original${mediaInfo?.poster_path}`}
             // className="aspect-video"
+            width={300}
+            height={600}
+            className={`w-full transition-all duration-500 ${isLoaded ? "blur-0" : "blur-lg"}`}
+            onLoad={() => setIsLoaded(true)}
           />
         </div>
 
@@ -52,7 +59,13 @@ const Banner = ({ mediaInfo }) => {
                 percent={Math.floor(mediaInfo.vote_average || 0 * 10)}
                 size={3.5}
                 strokeWidth={0.3}
-                strokeColor={"green"}
+                strokeColor={
+                  mediaInfo.vote_average >= 7
+                    ? "green"
+                    : mediaInfo.vote_average >= 5
+                      ? "orange"
+                      : "red"
+                }
               />
               Rating
             </div>

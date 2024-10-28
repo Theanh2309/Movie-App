@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <>
       {/* ctrl space */}
-      <header className="sticky top-0 z-10 flex h-14 items-center justify-between bg-slate-950 px-8 text-white lg:h-20 2xl:h-32">
+      <header className="absolute top-0 z-10 flex h-14 w-full items-center justify-between bg-slate-950 px-8 text-white lg:h-20 2xl:h-32">
         <div className="flex items-center gap-4 lg:gap-6">
           {/* Flaticon logo */}
           {/* ko co tien to sm, md... +> style mobile */}
