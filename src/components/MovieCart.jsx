@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import CircularProgressBar from "./CircularProgressBar";
 import { useState } from "react";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const MovieCart = ({ media, activeTabId, id }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -11,11 +10,15 @@ const MovieCart = ({ media, activeTabId, id }) => {
     : media.profile_path;
   // ? media.profile_path
   // : defaultBackdropPath;
-  console.log(media.media_type);
+
+  // console.log("top rated", media.media_type);
   return (
-    <Link to={`/movie-detail/${id}`}>
+    <Link
+      to={
+        media.media_type === "tv" ? `/tv-detail/${id}` : `/movie-detail/${id}`
+      }
+    >
       <div className="relative overflow-hidden rounded-lg border border-slate-800">
-        {/* media.media_type === "tv"*/}
         {/* {activeTabId === "tv" && (
           <p className="absolute right-1 top-1 rounded bg-black p-1 text-sm text-white">
             TV Show
@@ -34,7 +37,7 @@ const MovieCart = ({ media, activeTabId, id }) => {
 
         <img
           loading="lazy"
-          className={`w-full transition-all duration-500 ${isLoaded ? "blur-0" : "blur-lg"}`}
+          className={`w-full transition-all duration-500 ${isLoaded ? "blur-0" : "blur-"}`}
           onLoad={() => setIsLoaded(true)}
           src={
             backdropPath
@@ -50,6 +53,12 @@ const MovieCart = ({ media, activeTabId, id }) => {
           width={200}
           height={300}
         ></img>
+        {!isLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
+            {/* <p>Loading...</p> */}
+            <img src="defaultBackdropPath" srcSet={defaultBackdropPath} />
+          </div>
+        )}
         <div
           className="relative -top-[1.5vw] px-4"
           title={media.name || media.original_title}

@@ -22,6 +22,8 @@ const MediaList = ({ title, tabs }) => {
     // console.log({ trendingMediaList });
     setMediaList(trendingMediaList);
     // setActiveMovieId(popularMovies[0].id);
+
+    console.log("TOP RATED", mediaList);
   };
   useEffect(() => {
     if (url) {

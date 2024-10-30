@@ -23,8 +23,8 @@ const ActorInfo = ({ actor }) => {
 
       <div className="p-3">
         <p className="font-bold">{actor.name}</p>
-        <p>{actor.character}</p>
-        {/* <p> 18 tap xuat hien</p> */}
+        <p>{actor.character || actor?.roles[0]?.character}</p>
+        {actor.roles && <p> {`${actor.roles[0].episode_count} Episodes`}</p>}
       </div>
     </div>
   );

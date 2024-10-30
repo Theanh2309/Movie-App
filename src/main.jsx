@@ -3,9 +3,11 @@ import { createRoot } from "react-dom/client";
 // import App from "./pages/HomePage.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/HomePage.jsx";
-import MovieDetail from "./pages/MovieDetail.jsx";
-import RootLayout from "./pages/RootLayout.jsx";
+import HomePage from "@pages/HomePage.jsx";
+import MovieDetail from "@pages/MovieDetail.jsx";
+import RootLayout from "@pages/RootLayout.jsx";
+import TVShowDetail from "@pages/TVShowDetail";
+import NotFound from "@pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -16,10 +18,12 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       { path: "/movie-detail/:id", element: <MovieDetail /> },
+      { path: "/tv-detail/:id", element: <TVShowDetail /> },
     ],
   },
+  { path: "*", element: <NotFound /> },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router}>{/* <App /> */}</RouterProvider>,
+  <RouterProvider router={router}></RouterProvider>,
 );

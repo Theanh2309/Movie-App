@@ -34,7 +34,7 @@ const CircularProgressBar = ({
   return (
     <>
       {/* <!-- Circular Progress --> */}
-      <div className="relative size-[5vw]">
+      <div className="relative size-[4vw]">
         <svg
           className="size-full -rotate-90"
           viewBox={`0 0 ${sizePx} ${sizePx}`}
