@@ -11,7 +11,7 @@ const TVShowDetail = () => {
   const { id } = useParams();
   const { data: tvShowInfo, isLoading } = useFetch({
     // const { data , isLoading } = useFetch({
-    url: `/tv/${id}?append_to_response=content_ratings,aggregate_credits`,
+    url: `/tv/${id}?append_to_response=content_ratings,aggregate_credits,videos`,
   });
 
   const { data: relatedTVshow, isLoading: isRelatedMovieListLoading } =
@@ -22,6 +22,7 @@ const TVShowDetail = () => {
 
   // console.log({ movieInfo, relatedMovie });
   // console.log({ tvShowInfo, certification });
+
   if (isLoading) {
     return (
       <div

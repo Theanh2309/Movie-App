@@ -1,9 +1,12 @@
-import { faL, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircularProgressBar from "../CircularProgressBar";
 import { groupBy, _ } from "lodash";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ModalContext } from "../../context/ModalProvider";
 const Banner = ({ mediaInfo }) => {
+  const { setIsShowing, setContent } = useContext(ModalContext);
+
   console.log({ mediaInfo });
   const crews = (mediaInfo?.credits?.crew || [])
     .filter((crew) => ["Director", "Screenplay", "Writer"].includes(crew.job))
@@ -33,6 +36,10 @@ const Banner = ({ mediaInfo }) => {
   const groupedCrews = groupBy(crews, "job");
   // console.log({ groupedCrews });
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const trailerVideoKey = mediaInfo?.videos?.results?.find(
+    (video) => video.type === "Trailer",
+  ).key;
 
   return (
     <div className="relative text-white shadow-sm shadow-slate-800">
@@ -99,8 +106,22 @@ const Banner = ({ mediaInfo }) => {
               />
               Rating
             </div>
-            <button>
-              <FontAwesomeIcon icon={faPlay} className="mr-1" /> Trailer
+            <button
+              className="mr-2 rounded bg-white px-4 py-2 text-10 text-black lg:text-lg"
+              onClick={() => {
+                setIsShowing(true);
+                setContent(
+                  <iframe
+                    className="aspect-video w-[50vw]"
+                    src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                    title="Trailer"
+                  ></iframe>,
+                );
+              }}
+            >
+              <FontAwesomeIcon icon={faPlay} className="mr-1" />
+
+              <span>Trailer</span>
             </button>
           </div>
           <div>

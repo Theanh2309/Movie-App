@@ -1,8 +1,19 @@
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext } from "react";
+import { ModalContext } from "../../context/ModalProvider";
+import useFetch from "@hooks/useFetch.";
 const Movie = ({ data }) => {
-  // console.log({ data });
+  const { data: videoInfo } = useFetch({
+    url: `/movie/${data.id}/videos`,
+  });
 
+  const { setIsShowing, setContent } = useContext(ModalContext);
+
+  const trailerVideoKey = videoInfo?.results?.find(
+    (video) => video.type === "Trailer",
+  ).key;
+  console.log({ trailerVideoKey });
   return (
     <>
       {/* <img src="./bg.jpg" /> */}
@@ -26,7 +37,19 @@ const Movie = ({ data }) => {
             <p>{data?.overview}</p>
           </div>
           <div className="mt-4">
-            <button className="mr-2 rounded bg-white px-4 py-2 text-10 text-black lg:text-lg">
+            <button
+              className="mr-2 rounded bg-white px-4 py-2 text-10 text-black lg:text-lg"
+              onClick={() => {
+                setIsShowing(true);
+                setContent(
+                  <iframe
+                    className="aspect-video w-[50vw]"
+                    src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                    title="Trailer"
+                  ></iframe>,
+                );
+              }}
+            >
               {/* <button className="rounded bg-white px-4 py-2 text-[2vw] text-black"> */}
               <FontAwesomeIcon icon={faPlay} />
               Trailer
