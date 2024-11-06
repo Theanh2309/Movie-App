@@ -5,6 +5,9 @@ export default {
       fontSize: {
         10: "10px",
       },
+      fontFamily: {
+        sans: ['"Netflix Sans"', "sans-serif"],
+      },
     },
   },
   plugins: [],

@@ -1,13 +1,15 @@
 import PaginateIndicator from "./PaginateIndicator";
 import Movie from "./Movie";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Loading from "../Loading";
+import useFetch from "@hooks/useFetch.";
 
 const FeatureMovies = () => {
   const [movies, setMovies] = useState([]);
   const [activeMovieId, setActiveMovieId] = useState();
-  const [imagesLoaded, setImagesLoaded] = useState(false); // Trạng thái kiểm tra ảnh đã load xong chưa
-  const preloadImages = (movies) => {
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  const preloadImages = useCallback((movies) => {
     let loadedCount = 0;
     movies.forEach((movie) => {
       const img = new Image();
@@ -19,7 +21,7 @@ const FeatureMovies = () => {
         }
       };
     });
-  };
+  }, []);
 
   const fetchData = async () => {
     const res = await fetch("https://api.themoviedb.org/3/movie/popular", {
@@ -40,6 +42,14 @@ const FeatureMovies = () => {
     fetchData();
   }, []);
 
+  const { data: videoInfo } = useFetch(
+    {
+      url: activeMovieId ? `/movie/${activeMovieId}/videos` : null,
+    },
+    // convert boolean
+    { enabled: !!activeMovieId },
+  );
+
   return (
     // <div className="relative">
     //   {movies
@@ -56,13 +66,22 @@ const FeatureMovies = () => {
     // </div>
 
     <div className="relative">
-      {!imagesLoaded ? ( // Kiểm tra nếu ảnh chưa load, hiện thông báo hoặc skeleton
+      {!imagesLoaded ? (
         <Loading />
       ) : (
         movies
           .filter((item) => item.id === activeMovieId)
           .map((movie) => {
-            return <Movie data={movie} key={movie.id} />;
+            return (
+              <Movie
+                data={movie}
+                key={movie.id}
+                trailerVideoKey={
+                  videoInfo?.results?.find((video) => video.type === "Trailer")
+                    .key || ""
+                }
+              />
+            );
           })
       )}
 

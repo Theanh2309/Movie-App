@@ -1,7 +1,10 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 export const ModalContext = createContext();
 
+// export const useModalContext = ()=>{
+//   return useContext(ModalContext)
+// }
 const ModalProvider = ({ children }) => {
   // global state
   const [isShowing, setIsShowing] = useState(false);
@@ -14,8 +17,13 @@ const ModalProvider = ({ children }) => {
       document.body.style.overflow = "auto";
     }
   }, [isShowing]);
+
+  const openPopup = (content) => {
+    setIsShowing(true);
+    setContent(content);
+  };
   return (
-    <ModalContext.Provider value={{ setIsShowing, setContent }}>
+    <ModalContext.Provider value={{ openPopup }}>
       {/* app */}
       {children}
       {isShowing && (

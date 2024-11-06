@@ -76,13 +76,14 @@ const TVShowDetail = () => {
     <>
       <Banner mediaInfo={tvShowInfo} />
       <div className="bg-black text-[1.2vw] text-white">
-        <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
+        <div className="container">
           <div className="flex-[2]">
             <ActorList actors={tvShowInfo?.aggregate_credits?.cast || []} />
             <Seasons seasons={tvShowInfo.seasons} />
             <RelatedMediaList
               mediaList={relatedTVshow.results || []}
               isLoading={isRelatedMovieListLoading}
+              title="More like this"
             />
           </div>
           <div className="flex-1">

@@ -5,7 +5,7 @@ import { groupBy, _ } from "lodash";
 import { useContext, useState } from "react";
 import { ModalContext } from "../../context/ModalProvider";
 const Banner = ({ mediaInfo }) => {
-  const { setIsShowing, setContent } = useContext(ModalContext);
+  const { openPopup } = useContext(ModalContext);
 
   console.log({ mediaInfo });
   const crews = (mediaInfo?.credits?.crew || [])
@@ -109,8 +109,15 @@ const Banner = ({ mediaInfo }) => {
             <button
               className="mr-2 rounded bg-white px-4 py-2 text-10 text-black lg:text-lg"
               onClick={() => {
-                setIsShowing(true);
-                setContent(
+                // setIsShowing(true);
+                // setContent(
+                //   <iframe
+                //     className="aspect-video w-[50vw]"
+                //     src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                //     title="Trailer"
+                //   ></iframe>,
+                // );
+                openPopup(
                   <iframe
                     className="aspect-video w-[50vw]"
                     src={`https://www.youtube.com/embed/${trailerVideoKey}`}

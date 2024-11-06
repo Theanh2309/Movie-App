@@ -12,7 +12,7 @@ const MovieDetail = () => {
 
   const { data: movieInfo, isLoading } = useFetch({
     // const { data , isLoading } = useFetch({
-    url: `/movie/${id}?append_to_response=release_dates,credits`,
+    url: `/movie/${id}?append_to_response=release_dates,credits,videos`,
   });
 
   const { data: relatedMovie, isLoading: isRelatedMovieListLoading } = useFetch(
@@ -76,12 +76,13 @@ const MovieDetail = () => {
     <>
       <Banner mediaInfo={movieInfo} />
       <div className="bg-black text-[1.2vw] text-white">
-        <div className="mx-auto flex max-w-screen-xl gap-6 px-6 py-10 sm:gap-8">
+        <div className="container">
           <div className="flex-[2]">
             <ActorList actors={movieInfo?.credits?.cast || []} />
             <RelatedMediaList
               mediaList={relatedMovie.results || []}
               isLoading={isRelatedMovieListLoading}
+              title="More like this"
             />
           </div>
           <div className="flex-1">

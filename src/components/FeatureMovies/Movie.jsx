@@ -3,20 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { ModalContext } from "../../context/ModalProvider";
 import useFetch from "@hooks/useFetch.";
-const Movie = ({ data }) => {
-  const { data: videoInfo } = useFetch({
-    url: `/movie/${data.id}/videos`,
-  });
+import { Link } from "react-router-dom";
+const Movie = ({ data, trailerVideoKey }) => {
+  // const { setIsShowing, setContent } = useContext(ModalContext);
+  const { openPopup } = useContext(ModalContext);
 
-  const { setIsShowing, setContent } = useContext(ModalContext);
-
-  const trailerVideoKey = videoInfo?.results?.find(
-    (video) => video.type === "Trailer",
-  ).key;
-  console.log({ trailerVideoKey });
   return (
     <>
-      {/* <img src="./bg.jpg" /> */}
       <img
         src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`}
         className="aspect-video w-full brightness-50"
@@ -40,8 +33,15 @@ const Movie = ({ data }) => {
             <button
               className="mr-2 rounded bg-white px-4 py-2 text-10 text-black lg:text-lg"
               onClick={() => {
-                setIsShowing(true);
-                setContent(
+                // setIsShowing(true);
+                // setContent(
+                //   <iframe
+                //     className="aspect-video w-[50vw]"
+                //     src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                //     title="Trailer"
+                //   ></iframe>,
+                // );
+                openPopup(
                   <iframe
                     className="aspect-video w-[50vw]"
                     src={`https://www.youtube.com/embed/${trailerVideoKey}`}
@@ -55,9 +55,12 @@ const Movie = ({ data }) => {
               Trailer
             </button>
             {/* bg-slate-300/35: background trong suot ko dac(no solid) */}
-            <button className="rounded bg-slate-300/35 px-4 py-2 text-10 hover:bg-slate-300 hover:text-black lg:text-lg">
-              View Detail
-            </button>
+            <Link to={`/movie-detail/${data.id}`}>
+              {" "}
+              <button className="rounded bg-slate-300/35 px-4 py-2 text-10 hover:bg-slate-300 hover:text-black lg:text-lg">
+                View Detail
+              </button>
+            </Link>
           </div>
         </div>
       </div>

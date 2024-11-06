@@ -6,6 +6,7 @@ const CircularProgressBar = ({
   size = 2,
   strokeWidth = 0.25,
   strokeColor,
+  textColor = "text-white",
 }) => {
   const [sizePx, setSizePx] = useState((size * window.innerWidth) / 100);
   const handleResize = () => {
@@ -70,7 +71,9 @@ const CircularProgressBar = ({
 
         {/* <!-- Percentage Text --> */}
         <div className="absolute start-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
-          <span className="dark:text-white-500 text-center text-[1.2vw] font-bold text-white">
+          <span
+            className={`dark:text-white-500 text-center text-[1.2vw] font-bold ${textColor}`}
+          >
             {percent}
           </span>
         </div>

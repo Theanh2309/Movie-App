@@ -12,20 +12,28 @@ const Header = () => {
           <Link to="/">
             <img src="/netflix.png" className="w-16 cursor-pointer sm:w-28" />
           </Link>
-          <Link href="#" className="hover:text-red-400 lg:text-xl">
-            Phim
+          <Link
+            to="/search?mediaType=movie"
+            className="hover:text-red-400 lg:text-xl"
+          >
+            Movie
           </Link>
-          <Link href="#" className="hover:text-red-400 lg:text-xl">
-            Truyền Hình
+          <Link
+            to="/search?mediaType=tv"
+            className="hover:text-red-400 lg:text-xl"
+          >
+            TV Show
           </Link>
         </div>
-        <div className="p-4 hover:text-red-400">
-          {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="cursor-pointer"
-          />
-        </div>
+        <Link to="/search">
+          <div className="p-4 hover:text-red-400">
+            {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className="cursor-pointer"
+            />
+          </div>
+        </Link>
       </header>
     </>
   );

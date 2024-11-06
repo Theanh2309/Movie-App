@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import MovieCart from "@components/MovieCart";
-
-const MediaList = ({ title, tabs }) => {
+import { ThemeContext } from "../../context/ThemeProvider";
+const MediaList = ({ title, tabs = [] }) => {
+  const { isLight, setIsLight, isOpen } = useContext(ThemeContext);
+  const initialTabId = localStorage.getItem("activeTabId") || tabs[0]?.id;
   const [mediaList, setMediaList] = useState([]);
-  const [activeTabId, setActiveTabId] = useState(tabs[0]?.id);
+  // const [activeTabId, setActiveTabId] = useState(tabs[0]?.id);
+  const [activeTabId, setActiveTabId] = useState(initialTabId);
+
   // console.log(activeTabId);
   const url = tabs.find((tab) => tab.id === activeTabId)?.url;
   // console.log(url);
@@ -30,10 +34,24 @@ const MediaList = ({ title, tabs }) => {
       fetchData();
     }
   }, [activeTabId]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("activeTabId", activeTabId);
+  // }, [activeTabId]);
+
+  useEffect(() => {
+    if (title === "Top Rated") {
+      setActiveTabId(tabs[0]?.id);
+    }
+  }, [tabs]);
+
   console.log(mediaList);
   return (
     <>
-      <div className="bg-black px-8 py-10 text-[1.2vw] text-white">
+      {/* <div className="bg-black px-8 py-10 text-[1.2vw] text-white"> */}
+      <div
+        className={`${isOpen && isLight} bg-black px-8 py-10 text-[1.2vw] text-white`}
+      >
         <div className="mb-6 flex items-center gap-4">
           <p className="text-[2vw] font-bold">{title}</p>
           <ul className="flex rounded border border-white">
@@ -42,7 +60,10 @@ const MediaList = ({ title, tabs }) => {
                 <li
                   key={tab.id}
                   className={`cursor-pointer rounded ${tab.id === activeTabId ? "bg-white text-black" : ""} px-2 py-1`}
-                  onClick={() => setActiveTabId(tab.id)}
+                  onClick={() => {
+                    setActiveTabId(tab.id);
+                    localStorage.setItem("activeTabId", tab.id);
+                  }}
                 >
                   {tab.name}
                 </li>

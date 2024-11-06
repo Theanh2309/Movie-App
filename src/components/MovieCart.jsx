@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import CircularProgressBar from "./CircularProgressBar";
-import { useState } from "react";
-
-const MovieCart = ({ media, activeTabId, id }) => {
+import { useState, useContext } from "react";
+import { ThemeContext } from "../context/ThemeProvider";
+const MovieCart = ({ media, activeTabId, id, textColor }) => {
+  const { isLight, setIsLight, isOpen } = useContext(ThemeContext);
   const [isLoaded, setIsLoaded] = useState(false);
   const defaultBackdropPath = "/440x660.svg";
   const backdropPath = media?.backdrop_path
@@ -64,6 +65,7 @@ const MovieCart = ({ media, activeTabId, id }) => {
           title={media.name || media.original_title}
         >
           <CircularProgressBar
+            textColor={textColor}
             percent={
               Math.round(media.vote_average * 10) || 0
               //Math.round(media.popularity)
