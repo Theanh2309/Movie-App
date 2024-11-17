@@ -9,7 +9,7 @@ import RootLayout from "@pages/RootLayout.jsx";
 import TVShowDetail from "@pages/TVShowDetail";
 import NotFound from "@pages/NotFound";
 import ModalProvider from "./context/ModalProvider";
-import ThemeProvider from "./context/ThemeProvider";
+// import ThemeProvider from "./context/ThemeProvider";
 import PeoplePage from "@pages/PeoplePage";
 import Search from "@pages/SearchPage";
 
@@ -47,9 +47,9 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <ThemeProvider>
-    <ModalProvider>
-      <RouterProvider router={router}></RouterProvider>
-    </ModalProvider>
-  </ThemeProvider>,
+  // <ThemeProvider>
+  <ModalProvider>
+    <RouterProvider router={router}></RouterProvider>
+  </ModalProvider>,
+  // </ThemeProvider>,
 );

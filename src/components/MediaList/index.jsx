@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import MovieCart from "@components/MovieCart";
-import { ThemeContext } from "../../context/ThemeProvider";
+// import { ThemeContext } from "../../context/ThemeProvider";
 const MediaList = ({ title, tabs = [] }) => {
-  const { isLight, setIsLight, isOpen } = useContext(ThemeContext);
+  // const { isLight, setIsLight, isOpen } = useContext(ThemeContext);
   const initialTabId = localStorage.getItem("activeTabId") || tabs[0]?.id;
   const [mediaList, setMediaList] = useState([]);
   // const [activeTabId, setActiveTabId] = useState(tabs[0]?.id);
@@ -50,7 +50,8 @@ const MediaList = ({ title, tabs = [] }) => {
     <>
       {/* <div className="bg-black px-8 py-10 text-[1.2vw] text-white"> */}
       <div
-        className={`${isOpen && isLight} bg-black px-8 py-10 text-[1.2vw] text-white`}
+        className={`bg-black px-8 py-10 text-[1.2vw] text-white`}
+        // className={`${isOpen && isLight} bg-black px-8 py-10 text-[1.2vw] text-white`}
       >
         <div className="mb-6 flex items-center gap-4">
           <p className="text-[2vw] font-bold">{title}</p>

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import CircularProgressBar from "./CircularProgressBar";
 import { useState, useContext } from "react";
-import { ThemeContext } from "../context/ThemeProvider";
+// import { ThemeContext } from "../context/ThemeProvider";
 const MovieCart = ({ media, activeTabId, id, textColor }) => {
-  const { isLight, setIsLight, isOpen } = useContext(ThemeContext);
+  // const { isLight, setIsLight, isOpen } = useContext(ThemeContext);
   const [isLoaded, setIsLoaded] = useState(false);
   const defaultBackdropPath = "/440x660.svg";
   const backdropPath = media?.backdrop_path
