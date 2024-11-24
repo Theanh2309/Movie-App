@@ -24,7 +24,12 @@ const Header = () => {
           >
             TV Show
           </Link>
+          <Link to="/favorites" className="hover:text-red-400 lg:text-xl">
+            Yêu thích
+          </Link>
         </div>
+
+        {/* Liên kết đến trang yêu thích */}
         <Link to="/search">
           <div className="p-4 hover:text-red-400">
             {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}

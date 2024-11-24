@@ -4,9 +4,13 @@ import ActorList from "@components/MediaDetail/ActorList";
 import RelatedMediaList from "@/components/MediaDetail/RelatedMediaList";
 import MovieInfo from "@components/MediaDetail/MovieInfo";
 import useFetch from "@hooks/useFetch.";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, removeFavorite } from "../redux/favoriteSlice";
 const MovieDetail = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  // const favorites = useSelector((state) => state.favorites);
+
   // const [movieInfo, setMovieInfo] = useState({});
   // const [relatedMovie, setRelatedMovie] = useState([]);
 
@@ -21,7 +25,29 @@ const MovieDetail = () => {
     },
   );
   // lan render dau tien , data luon la 1 obj rong , ko phai 1 mang rong nen relatedMovie la 1 obj rong=> loi ngay tu khi render lan dau
+  // Kiểm tra nếu phim đã được thêm vào yêu thích
+  const isFavorite = useSelector((state) =>
+    state?.favorites?.some((movie) => movie.id === movieInfo?.id),
+  );
+  console.log({ isFavorite });
+  // Thêm vào yêu thích
+  const addToFavorites = () => {
+    // const isAlreadyFavorite = favorites?.some(
+    //   (movie) => movie.id === movieInfo.id,
+    // );
+    if (isFavorite) {
+      alert("Phim này đã có trong danh sách yêu thích!");
+    } else {
+      dispatch(addFavorite(movieInfo));
+      alert("Đã thêm vào danh sách yêu thích!");
+    }
+  };
 
+  // Xóa khỏi yêu thích
+  const removeFromFavorites = () => {
+    dispatch(removeFavorite(movieInfo?.id));
+    alert("Đã xóa khỏi danh sách yêu thích!");
+  };
   // console.log({ movieInfo, relatedMovie });
   if (isLoading) {
     return (
@@ -74,7 +100,13 @@ const MovieDetail = () => {
   }
   return (
     <>
-      <Banner mediaInfo={movieInfo} />
+      <Banner
+        mediaInfo={movieInfo}
+        isFavorite={isFavorite}
+        addToFavorites={addToFavorites}
+        removeFromFavorites={removeFromFavorites}
+      />
+
       <div className="bg-black text-[1.2vw] text-white">
         <div className="container">
           <div className="flex-[2]">
@@ -87,6 +119,8 @@ const MovieDetail = () => {
           </div>
           <div className="flex-1">
             <MovieInfo movieInfo={movieInfo} />
+
+            {/* Biểu tượng trái tim để thêm hoặc xóa yêu thích */}
           </div>
         </div>
       </div>

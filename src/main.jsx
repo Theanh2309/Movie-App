@@ -12,7 +12,9 @@ import ModalProvider from "./context/ModalProvider";
 // import ThemeProvider from "./context/ThemeProvider";
 import PeoplePage from "@pages/PeoplePage";
 import Search from "@pages/SearchPage";
-
+import FavoriteMovies from "@pages/FavoriteMovies";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 const router = createBrowserRouter([
   {
     element: <RootLayout />,
@@ -41,6 +43,7 @@ const router = createBrowserRouter([
         },
       },
       { path: "/search", element: <Search /> },
+      { path: "/favorites", element: <FavoriteMovies /> },
     ],
   },
   { path: "*", element: <NotFound /> },
@@ -48,8 +51,12 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   // <ThemeProvider>
-  <ModalProvider>
-    <RouterProvider router={router}></RouterProvider>
-  </ModalProvider>,
+  <Provider store={store}>
+    <ModalProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </ModalProvider>
+    ,
+  </Provider>,
+
   // </ThemeProvider>,
 );

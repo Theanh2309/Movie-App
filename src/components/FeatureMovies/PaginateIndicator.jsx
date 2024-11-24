@@ -13,6 +13,7 @@ const PaginateIndicator = ({ movies, activeMovieId, setActiveMovieId }) => {
   //   }, 5000);
   //   return () => clearInterval(interval);
   // }, [movieIds]);
+  if (!movies || movies.length === 0) return null;
 
   return (
     <>
@@ -23,7 +24,7 @@ const PaginateIndicator = ({ movies, activeMovieId, setActiveMovieId }) => {
               <li
                 onClick={() => setActiveMovieId(item.id)}
                 key={item.id}
-                className={`h-1 w-6 cursor-pointer rounded ${item.id === activeMovieId ? "bg-slate-50" : "bg-slate-600"}`}
+                className={`h-1 w-6 cursor-pointer rounded ${item.id === activeMovieId ? "bg-slate-50" : "bg-slate-600 hover:bg-slate-400"}`}
               ></li>
             );
           })}

@@ -7,12 +7,13 @@ import { Link } from "react-router-dom";
 const Movie = ({ data, trailerVideoKey }) => {
   // const { setIsShowing, setContent } = useContext(ModalContext);
   const { openPopup } = useContext(ModalContext);
-
+  if (!data) return null;
   return (
     <>
       <img
         src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`}
         className="aspect-video w-full brightness-50"
+        alt={data?.title || "Movie Image"}
       />
       <div className="absolute bottom-[10%] left-8 w-1/2 text-white sm:w-1/3">
         <p className="mb-2 font-bold sm:text-[2vw]">{data?.title}</p>
@@ -33,21 +34,25 @@ const Movie = ({ data, trailerVideoKey }) => {
             <button
               className="mr-2 rounded bg-white px-4 py-2 text-10 text-black lg:text-lg"
               onClick={() => {
-                // setIsShowing(true);
-                // setContent(
-                //   <iframe
-                //     className="aspect-video w-[50vw]"
-                //     src={`https://www.youtube.com/embed/${trailerVideoKey}`}
-                //     title="Trailer"
-                //   ></iframe>,
-                // );
-                openPopup(
-                  <iframe
-                    className="aspect-video w-[50vw]"
-                    src={`https://www.youtube.com/embed/${trailerVideoKey}`}
-                    title="Trailer"
-                  ></iframe>,
-                );
+                if (trailerVideoKey) {
+                  // setIsShowing(true);
+                  // setContent(
+                  //   <iframe
+                  //     className="aspect-video w-[50vw]"
+                  //     src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                  //     title="Trailer"
+                  //   ></iframe>,
+                  // );
+                  openPopup(
+                    <iframe
+                      className="aspect-video w-[50vw]"
+                      src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+                      title="Trailer"
+                    ></iframe>,
+                  );
+                } else {
+                  alert("Trailer not available");
+                }
               }}
             >
               {/* <button className="rounded bg-white px-4 py-2 text-[2vw] text-black"> */}

@@ -1,10 +1,15 @@
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircularProgressBar from "../CircularProgressBar";
 import { groupBy, _ } from "lodash";
 import { useContext, useState } from "react";
 import { ModalContext } from "../../context/ModalProvider";
-const Banner = ({ mediaInfo }) => {
+const Banner = ({
+  mediaInfo,
+  isFavorite,
+  addToFavorites,
+  removeFromFavorites,
+}) => {
   const { openPopup } = useContext(ModalContext);
 
   console.log({ mediaInfo });
@@ -39,7 +44,9 @@ const Banner = ({ mediaInfo }) => {
 
   const trailerVideoKey = mediaInfo?.videos?.results?.find(
     (video) => video.type === "Trailer",
-  ).key;
+  )?.key;
+
+  console.log({ mediaInfo });
 
   return (
     <div className="relative text-white shadow-sm shadow-slate-800">
@@ -129,6 +136,12 @@ const Banner = ({ mediaInfo }) => {
               <FontAwesomeIcon icon={faPlay} className="mr-1" />
 
               <span>Trailer</span>
+            </button>
+            <button
+              onClick={isFavorite ? removeFromFavorites : addToFavorites}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-red-500 hover:text-red-700"
+            >
+              <FontAwesomeIcon icon={faHeart} />
             </button>
           </div>
           <div>
