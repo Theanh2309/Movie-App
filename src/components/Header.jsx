@@ -25,7 +25,7 @@ const Header = () => {
             TV Show
           </Link>
           <Link to="/favorites" className="hover:text-red-400 lg:text-xl">
-            Yêu thích
+            My Favorite
           </Link>
         </div>
 

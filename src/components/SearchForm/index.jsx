@@ -13,7 +13,7 @@ const SearchForm = ({ setSearchFormValues }) => {
   const mediaType = searchParams.get("mediaType");
   console.log({ mediaType });
 
-  const { handleSubmit, control, register, watch } = useForm({
+  const { handleSubmit, control, register, watch, setValue } = useForm({
     defaultValues: {
       mediaType: "movie",
       genres: [],

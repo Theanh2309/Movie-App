@@ -31,11 +31,7 @@ const TVShowDetail = () => {
 
   // Thêm vào yêu thích
   const addToFavorites = () => {
-    const favorites = useSelector((state) => state.favorites);
-    const isAlreadyFavorite = favorites.some(
-      (movie) => movie.id === tvShowInfo.id,
-    );
-    if (isAlreadyFavorite) {
+    if (isFavorite) {
       alert("Phim này đã có trong danh sách yêu thích!");
     } else {
       dispatch(addFavorite(tvShowInfo));
@@ -103,7 +99,7 @@ const TVShowDetail = () => {
         mediaInfo={tvShowInfo}
         isFavorite={isFavorite}
         addToFavorites={addToFavorites}
-        removeFromFavorites={removeFavorite}
+        removeFromFavorites={removeFromFavorites}
       />
       {/* <button
         onClick={isFavorite ? removeFromFavorites : addToFavorites}
