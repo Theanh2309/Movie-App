@@ -10,8 +10,8 @@ import { useSearchParams } from "react-router-dom";
 const SearchForm = ({ setSearchFormValues }) => {
   const params = useSearchParams();
   const [searchParams] = params;
-  // const mediaType = searchParams.get("mediaType");
-  // console.log({ mediaType });
+  const mediaType = searchParams.get("mediaType");
+  console.log({ mediaType });
 
   const { handleSubmit, control, register, watch } = useForm({
     defaultValues: {
@@ -21,17 +21,21 @@ const SearchForm = ({ setSearchFormValues }) => {
     },
   });
 
-  // khong tao ra button submit nen ko dung ham onSubmit => dung wwatch
-  const onSubmit = (data) => {
-    console.log({ data });
-  };
+  useEffect(() => {
+    const mediaType = searchParams.get("mediaType") || "movie";
+    setValue("mediaType", mediaType);
+  }, [searchParams, setValue]);
+
   // hoat dong moi khi co 1 field thay doi, tra ra tat ca data
   const formValues = watch();
   console.log({ formValues });
   useEffect(() => {
     setSearchFormValues(formValues);
   }, [JSON.stringify(formValues)]);
-
+  // khong tao ra button submit nen ko dung ham onSubmit => dung wwatch
+  const onSubmit = (data) => {
+    console.log({ data });
+  };
   return (
     <div className="rounded-lg border p-4 shadow-md">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
